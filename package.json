@@ -8,6 +8,7 @@
     "start": "node server.js",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js",
+    "watch-tailwindcss": "npx tailwindcss -i ./tailwind-styles/input.css -o ./public/styles/output.css --watch",
     "sass-watch": "sass public/styles --watch --poll --no-source-map"
   },
   "author": "Lighthouse Labs",
@@ -21,7 +22,9 @@
     "pg": "^8.5.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.16",
     "nodemon": "^2.0.10",
+    "postcss": "^8.4.31",
     "sass": "^1.69.4",
     "tailwindcss": "^3.3.3"
   }
