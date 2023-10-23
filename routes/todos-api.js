@@ -8,10 +8,10 @@
 const express = require('express');
 const router = express.Router();
 const todoQueries = require('../db/queries/todos');
-router.use((req, res, next) => {
-  // TODO: Check cookies to see if logged in, else redirect or something.
-  next();
-});
+// router.use((req, res, next) => {
+//   // TODO: Check cookies to see if logged in, else redirect or something.
+//   next();
+// });
 
 router.patch('/:id', (req, res) => {
   // TODO: Get user's id from cookie
