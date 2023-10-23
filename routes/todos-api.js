@@ -23,6 +23,21 @@ router.get('/', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  //createNewTodo(userId, categoryString, nameOfToDo)
+  const text = req.body.text;
+  const categoryString = 'To Eat';
+  todoQueries.createNewTodo(1, categoryString, text)
+  .then(newTodo => {
+    res.json(newTodo)
+    .catch(err => {
+      res
+        .status(401)
+        .json({ error: err.message });
+    });
+  });
+});
+
 router.patch('/:id', (req, res) => {
   // TODO: Get user's id from cookie
   todoQueries.updateCategoryWithId()
