@@ -1,3 +1,5 @@
+const MAX_TITLE_LENGTH = 255;
+
 /* eslint-disable no-undef */
 $(function() {
   //handle submit events with AJAX
@@ -12,6 +14,11 @@ const enterNewToDo = function(event) {
 
   if (newTodoString === '') {
     console.log("😓 The To Do is empty.");
+    return;
+  }
+
+  if (newTodoString.length > MAX_TITLE_LENGTH) {
+    console.log('Todo title too large!');
     return;
   }
 
