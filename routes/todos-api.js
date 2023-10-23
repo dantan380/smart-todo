@@ -15,12 +15,12 @@ const todoQueries = require('../db/queries/todos');
 
 router.get('/', (req, res) => {
   todoQueries.getTodosById(1)
-  .then(todos => res.json(todos))
-  .catch(err => {
-    res
-      .status(401)
-      .json({ error: err.message });
-  });
+    .then(todos => res.json(todos))
+    .catch(err => {
+      res
+        .status(401)
+        .json({ error: err.message });
+    });
 });
 
 router.post('/', (req, res) => {
@@ -28,14 +28,14 @@ router.post('/', (req, res) => {
   const text = req.body.text;
   const categoryString = 'To Eat';
   todoQueries.createNewTodo(1, categoryString, text)
-  .then(newTodo => {
-    res.json(newTodo)
-    .catch(err => {
-      res
-        .status(401)
-        .json({ error: err.message });
+    .then(newTodo => {
+      res.json(newTodo)
+        .catch(err => {
+          res
+            .status(401)
+            .json({ error: err.message });
+        });
     });
-  });
 });
 
 router.patch('/:id', (req, res) => {
