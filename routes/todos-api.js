@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
   const categoryString = 'To Eat';
   todoQueries.createNewTodo(1, categoryString, text)
     .then(newTodo => {
-      res.json(newTodo)
+      res.json(newTodo);
     })
     .catch(err => {
       res
