@@ -8,6 +8,8 @@
 const express = require('express');
 const router = express.Router();
 const todoQueries = require('../db/queries/todos');
+const googleApi = require('../apis/google-natural-lang-api');
+const helpers = require('../apis/helpers');
 // router.use((req, res, next) => {
 //   // TODO: Check cookies to see if logged in, else redirect or something.
 //   next();
@@ -24,11 +26,22 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  //createNewTodo(userId, categoryString, nameOfToDo)
   const text = req.body.text;
-  const categoryString = 'To Eat';
-  todoQueries.createNewTodo(1, categoryString, text)
+  // const categoryString = googleApi;
+  googleApi.callClassifyText(text)
+    .then(googleCategories => {
+    
+      //the category in sql.
+      //return 'To Eat', for example.
+      console.log(googleCategories);
+      return helpers.organizeCategories(googleCategories);
+    })
+    .then(category => {
+      //make the SQL call here:
+      return todoQueries.createNewTodo(1, category, text);
+    })
     .then(newTodo => {
+      //return the new record from sql.
       res.json(newTodo);
     })
     .catch(err => {

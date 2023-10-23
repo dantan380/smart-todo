@@ -19,59 +19,39 @@ require('dotenv').config();
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-
-
 'use strict';
 
-function main() {
-  // [START language_v2_generated_LanguageService_ClassifyText_async]
-  /**
-   * This snippet has been automatically generated and should be regarded as a code template only.
-   * It will require modifications to work.
-   * It may require correct/in-range values for request initialization.
-   * TODO(developer): Uncomment these variables before running the sample.
-   */
-  /**
-   *  Required. Input document.
-   */
+// Imports the Language library
+const { LanguageServiceClient } = require('@google-cloud/language').v2;
 
-  const inputText = process.argv[2];
-  //const inputText = 'Taylor Swift Eras Concert';
+// Instantiates a client
+const languageClient = new LanguageServiceClient();
 
+const callClassifyText = function(inputText) {
   const document = {
     content: inputText,
     type: 'PLAIN_TEXT', // or 'HTML' for HTML content
   };
+  // Construct request
+  const request = {
+    document,
+  };
 
-  // Imports the Language library
-  const { LanguageServiceClient } = require('@google-cloud/language').v2;
+  // Run request
+  return languageClient.classifyText(request)
+    .then(response => {
+      const firstElement = response[0];
+      const categoriesArray = firstElement.categories;
 
-  // Instantiates a client
-  const languageClient = new LanguageServiceClient();
-
-  async function callClassifyText() {
-    // Construct request
-    const request = {
-      document,
-    };
-
-    // Run request
-    const response = await languageClient.classifyText(request);
-    const firstElement = response[0];
-    const categoriesArray = firstElement.categories;
-    console.log("Input Text: ", inputText);
-    for (const category of categoriesArray) {
-      console.log("category", category);
-    }
-    //console.log(response);
-  }
-
-  callClassifyText();
-  // [END language_v2_generated_LanguageService_ClassifyText_async]
+      console.log("Input Text: ", inputText);
+      return categoriesArray;
+  });
 }
 
 process.on('unhandledRejection', err => {
   console.error(err.message);
   process.exitCode = 1;
 });
-main();
+
+
+module.exports = {callClassifyText};
