@@ -1,7 +1,7 @@
 node_modules/
 public/styles
 .env
+.gac.json
 *.log
 *.sqlite3
 package-lock.json
-.gac.json
