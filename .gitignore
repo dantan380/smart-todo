@@ -4,3 +4,4 @@ public/styles
 .gac.json
 *.log
 *.sqlite3
+jsconfig.json
