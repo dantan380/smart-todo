@@ -31,8 +31,13 @@ const enterNewToDo = function(event) {
 
   // Send POST method to '/api/todos' URL with data as JSON.
   console.log('Submitting text: ', newTodoString);
-  $.ajax({ method: 'POST', url: '/api/todos', data: { text: newTodoString } });
-  // TODO: Might have to add then,catch depending on what response gets sent back.
+  $.ajax({ method: 'POST', url: '/api/todos', data: { text: newTodoString } })
+    .then(() => {
+      $newTodo.val('');
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 /**
