@@ -35,6 +35,11 @@ const enterNewToDo = function(event) {
   // TODO: Might have to add then,catch depending on what response gets sent back.
 };
 
+/**
+ * Renders error message on $element, then resets back to normal after DEFAULT_WAIT_TIME.
+ * @param {JQuery<HTMLElement>} $element Element responsible for rendering error.
+ * @param {string} errMessage Error message that will replace $element's placeholder.
+ */
 const formError = ($element, errMessage) => {
   const oldClass = 'border border-gray-300';
   const originalPlaceholder = $element.attr('placeholder');
