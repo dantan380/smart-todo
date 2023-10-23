@@ -35,7 +35,8 @@ function main() {
    *  Required. Input document.
    */
 
-  const inputText = 'I want to buy a giant pinata';
+  const inputText = process.argv[2];
+  //const inputText = 'Taylor Swift Eras Concert';
 
   const document = {
     content: inputText,
