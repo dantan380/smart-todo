@@ -43,11 +43,7 @@ VALUES(
     .catch(err => {
       console.log('Error occurred:', err.message);
       throw err;
-    })
-    .finally(() => {
-      console.log('close connection to the pool?');
-    }
-);
+    });
 };
 
 const getTodosById = (id) => {
