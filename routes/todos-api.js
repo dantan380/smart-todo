@@ -30,11 +30,11 @@ router.post('/', (req, res) => {
   todoQueries.createNewTodo(1, categoryString, text)
     .then(newTodo => {
       res.json(newTodo)
-        .catch(err => {
-          res
-            .status(401)
-            .json({ error: err.message });
-        });
+    })
+    .catch(err => {
+      res
+        .status(401)
+        .json({ error: err.message });
     });
 });
 
