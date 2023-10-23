@@ -4,4 +4,3 @@ public/styles
 .gac.json
 *.log
 *.sqlite3
-package-lock.json
