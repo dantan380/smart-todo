@@ -56,21 +56,13 @@ app.get('/', (req, res) => {
       .then(user => {
         req.session.user = user;
         console.log('Visiting user defaulted login to user 1.');
-<<<<<<< HEAD
         res.render('index', { user: req.session.user });
-=======
-        res.render('index');
->>>>>>> 5c74085 (Refactor to set cookie as user object rather than just id)
       })
       .catch(err => {
         throw err;
       });
   } else {
-<<<<<<< HEAD
     res.render('index', { user: req.session.user });
-=======
-    res.render('index');
->>>>>>> 5c74085 (Refactor to set cookie as user object rather than just id)
   }
 });
 
