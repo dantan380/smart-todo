@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
   getUserWithId(userId)
     .then(user => {
       req.session.user = user;
-      return res.status(200).json({ message: `Successfully logged in to user: ${req.session.user.id}` });
+      return res.redirect('/');
     })
     .catch(err => {
       res.status(500).json({ message: err.message });
