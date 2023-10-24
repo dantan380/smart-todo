@@ -37,7 +37,15 @@ const clientHelper = (function() {
     }
 
     //our fancy html element
-    const $entry = $(`<li>${todo}</li>`);
+    const $entry = $(`<li class="p-2 flex items-center">
+    <input type="checkbox" class="mr-2" />
+    <label for="item1" class="mr-2">${todo}</label>
+    <button
+      class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full"
+    >
+      Edit
+    </button>
+  </li>`);
     return $entry;
   };
 
