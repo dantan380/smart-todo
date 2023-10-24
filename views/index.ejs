@@ -15,18 +15,17 @@
   <!-- stylesheet -->
   <link rel="stylesheet" href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css" />
 
+  <link rel="stylesheet"
+    href="https://horizon-tailwind-react-corporate-7s21b54hb-horizon-ui.vercel.app/static/css/main.d7f96858.css" />
+
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/client-helper.js"></script>
   <script defer src="/scripts/app.js"></script>
   <script defer src="/scripts/todos.js"></script>
 </head>
 
 <body>
   <h1>Have fun! 🥔</h1>
-  <h1 class="py-3 text-1xl font-bold">
-    This text is also in Tailwind, because I'm pretty sure CSS doesn't know
-    what 'py-3' means as a class.
-  </h1>
+  <h1 class="py-3 text-1xl font-bold">What would you like to do?</h1>
 
   <!-- Text bar component in Tailwind -->
   <div class="w-3/6 mx-auto">
@@ -34,7 +33,7 @@
       <div class="max-w-7xl h-16 flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
         <textarea id="todo-title" rows="1"
           class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-all"
-          placeholder="Type your to do description. . ."></textarea>
+          placeholder="I would like to watch/read/eat at/buy..."></textarea>
         <button type="submit"
           class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
           <svg class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -46,31 +45,130 @@
       </div>
     </form>
   </div>
+  <div class="mb-12" name="spacer"></div>
 
-  <!-- Boring, regular, ordered list -->
-  <div class="w-5/6 mx-auto flex justify-around">
-    <article>
-      <h1>To Eat</h1>
-      <ol id="category-to-eat">
-      </ol>
-    </article>
-    <article>
-      <h1>To Read</h1>
-      <ol id="category-to-read">
-      </ol>
-    </article>
-    <article>
-      <h1>To Watch</h1>
-      <ol id="category-to-watch">
-      </ol>
-    </article>
-    <article>
-      <h1>To Buy</h1>
-      <ol id="category-to-buy">
-      </ol>
-    </article>
-  </div>
+  <section class="flex justify-around" name="four-categories">
 
+    <ul class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3" name="1" id="category-to-watch">
+      <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
+        To Watch
+      </h2>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch The Matrix</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch Barbie</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch Oppenheimer</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+    </ul>
+
+    <ul class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3" name="2" id="category-to-eat">
+      <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
+        To Watch
+      </h2>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch The Matrix</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch Barbie</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch Oppenheimer</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+    </ul>
+
+    <ul class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3" name="3" id="category-to-read">
+      <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
+        To Watch
+      </h2>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch The Matrix</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch Barbie</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch Oppenheimer</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+    </ul>
+
+    <ul class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3" name="4" id="category-to-buy">
+      <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
+        To Watch
+      </h2>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch The Matrix</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch Barbie</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+
+      <li class="p-2 flex items-center">
+        <input type="checkbox" class="mr-2" />
+        <label for="item1" class="mr-2">Watch Oppenheimer</label>
+        <button class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full">
+          Edit
+        </button>
+      </li>
+    </ul>
+  </section>
 </body>
 
 </html>
