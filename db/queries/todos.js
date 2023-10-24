@@ -88,10 +88,10 @@ const updateCategoryWithId = (newCategory, todoId) => {
 //   });
 
 // TESTING GETTING TODOS WITH CATEGEROIES QUERY
-getTodosByIdWithCategoryNames(1)
-  .then(res => {
-    console.log("row created", res);
-  });
+// getTodosByIdWithCategoryNames(1)
+//   .then(res => {
+//     console.log("row created", res);
+//   });
 
 
 module.exports = { getTodosById, updateCategoryWithId, createNewTodo, getTodosByIdWithCategoryNames };
