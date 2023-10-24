@@ -38,7 +38,7 @@ VALUES(
       if (!res.rows[0]) {
         throw Error('No new to do has been created.');
       }
-      return res.rows[0];
+      return { todo: res.rows[0], category: categoryString };
     })
     .catch(err => {
       console.log('Error occurred:', err.message);
@@ -48,6 +48,15 @@ VALUES(
 
 const getTodosById = (id) => {
   return db.query('SELECT * FROM todos WHERE user_id = $1', [id])
+    .then(todos => {
+      return todos.rows;
+    });
+};
+
+const getTodosByIdWithCategoryNames = (id) => {
+  return db.query(`SELECT todos.id, categories.name, title, description, is_complete, date_created 
+  FROM todos JOIN categories ON todos.category_id = categories.id
+  WHERE user_id = $1;`, [id])
     .then(todos => {
       return todos.rows;
     });
@@ -78,4 +87,11 @@ const updateCategoryWithId = (newCategory, todoId) => {
 //     console.log("row created", res);
 //   });
 
-module.exports = { getTodosById, updateCategoryWithId, createNewTodo };
+// TESTING GETTING TODOS WITH CATEGEROIES QUERY
+getTodosByIdWithCategoryNames(1)
+  .then(res => {
+    console.log("row created", res);
+  });
+
+
+module.exports = { getTodosById, updateCategoryWithId, createNewTodo, getTodosByIdWithCategoryNames };

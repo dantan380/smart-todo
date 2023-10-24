@@ -25,6 +25,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/withCategories', (req, res) => {
+  const userId = 1;
+  todoQueries.getTodosByIdWithCategoryNames(userId)
+    .then(todos => res.json(todos))
+    .catch(err => {
+      res
+        .status(401)
+        .json({ error: err.message });
+    });
+});
+
 router.post('/', (req, res) => {
   const text = req.body.text;
   // const categoryString = googleApi;
