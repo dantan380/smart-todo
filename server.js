@@ -6,6 +6,7 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
+const { getUserWithId } = require('./db/queries/users');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -50,11 +51,19 @@ app.use('/users', usersRoutes);
 
 app.get('/', (req, res) => {
   // Set default user to 1 if user is not logged in. TODO: We can remove this later if we like.
-  if (!req.session.userId) {
-    req.session.userId = 1;
-    console.log('Visiting user defaulted login to user 1.');
+  if (!req.session.user) {
+    getUserWithId(1)
+      .then(user => {
+        req.session.user = user;
+        console.log('Visiting user defaulted login to user 1.');
+        res.render('index');
+      })
+      .catch(err => {
+        throw err;
+      });
+  } else {
+    res.render('index');
   }
-  res.render('index');
 });
 
 app.listen(PORT, () => {

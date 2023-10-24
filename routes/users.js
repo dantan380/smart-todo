@@ -7,24 +7,31 @@
 
 const express = require('express');
 const router = express.Router();
+const { getUserWithId } = require('../db/queries/users');
 
 // Example http://localhost:8080/users/logout
 router.get('/logout', (req, res) => {
-  if (!req.session.userId) {
+  if (!req.session.user) {
     res.status(200).json({ message: 'Nothing to log out from, user was never signed in.' });
     return;
   }
 
-  const userId = req.session.userId;
+  const user = req.session.user;
   req.session = null;
-  res.status(200).json({ message: `Successfully logged out from user: ${userId}` });
+  res.status(200).json({ message: `Successfully logged out from user: ${user.id}` });
 });
 
 // Example http://localhost:8080/users/1
 router.get('/:id', (req, res) => {
   const userId = req.params.id;
-  req.session.userId = userId;
-  res.status(200).json({ message: `Successfully logged in to user: ${req.session.userId}` });
+  getUserWithId(userId)
+    .then(user => {
+      req.session.user = user;
+      return res.status(200).json({ message: `Successfully logged in to user: ${req.session.user.id}` });
+    })
+    .catch(err => {
+      res.status(500).json({ message: err.message });
+    });
 });
 
 module.exports = router;
