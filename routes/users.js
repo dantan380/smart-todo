@@ -27,7 +27,11 @@ router.get('/:id', (req, res) => {
   getUserWithId(userId)
     .then(user => {
       req.session.user = user;
+<<<<<<< HEAD
       return res.redirect('/');
+=======
+      return res.status(200).json({ message: `Successfully logged in to user: ${req.session.user.id}` });
+>>>>>>> 5c74085 (Refactor to set cookie as user object rather than just id)
     })
     .catch(err => {
       res.status(500).json({ message: err.message });
