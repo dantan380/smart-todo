@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/withCategories', (req, res) => {
-  const userId = 1;
+  const userId = req.session.user.id;
   todoQueries.getTodosByIdWithCategoryNames(userId)
     .then(todos => res.json(todos))
     .catch(err => {
