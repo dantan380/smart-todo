@@ -1,22 +1,44 @@
+const TRUNCATE_CHARACTER_LIMIT = 45;
 
 //IIFE
 //helpers in global scope.
 //safe to declare outside of document.ready because they will never be called before.  (Invoked from js files inside document.ready)
-const helpers = (function() {
+const clientHelper = (function() {
   const _helpers = {};
 
-  const $toEatCategory = $(document).find('#category-to-eat');
-  const $toReadCategory = $(document).find('#category-to-read');
-  const $toBuyCategory = $(document).find('#category-to-buy');
-  const $toWatchCategory = $(document).find('#category-to-watch');
+  let $toEatCategory;
+  let $toReadCategory;
+  let $toBuyCategory;
+  let $toWatchCategory;
 
+  //make sure this is called once before other helper operations
+  _helpers.locateCategoryElements = function() {
+    $toEatCategory = $(document).find('#category-to-eat');
+    $toReadCategory = $(document).find('#category-to-read');
+    $toBuyCategory = $(document).find('#category-to-buy');
+    $toWatchCategory = $(document).find('#category-to-watch');
+  };
+
+  // Clear all child elements
   _helpers.clearAllTodos = function() {
 
-    // Clear all child elements
     $toEatCategory.empty();
     $toReadCategory.empty();
     $toBuyCategory.empty();
     $toWatchCategory.empty();
+  };
+
+  //truncates characters if it's too long
+  //create html element
+  _helpers.getTodoHtml = function(valueOfTodo) {
+    let todo = valueOfTodo;
+    if (valueOfTodo.length > TRUNCATE_CHARACTER_LIMIT) {
+      todo = `${valueOfTodo.slice(0, TRUNCATE_CHARACTER_LIMIT)}...`;
+    }
+
+    //our fancy html element
+    const $entry = $(`<li>${todo}</li>`);
+    return $entry;
   };
 
   //not a fan of hard coding categories here.

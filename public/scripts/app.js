@@ -25,22 +25,16 @@ const loadUserTodos = function() {
 const processTodos = function(todos) {
 
   //helpers = global object of helper functions (client-helper.js)
-  helpers.clearAllTodos();
+  clientHelper.locateCategoryElements();
+  clientHelper.clearAllTodos();
 
   todos.forEach(element => {
 
-    let todo = element.title;
-
-    //truncate beyond 45 characters
-    if (element.title.length > 45) {
-      todo = `${element.title.slice(0, 45)}...`;
-    }
-
-    //the fancy HTML todo.
-    const $entry = $(`<li>${todo}</li>`);
+    //create HTML element of todo
+    const $entry = clientHelper.getTodoHtml(element.title);
 
     //finally add the entry to the category.
-    helpers.appendTodoOnCategory(element.name, $entry);
+    clientHelper.appendTodoOnCategory(element.name, $entry);
 
   });
 

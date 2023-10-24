@@ -36,42 +36,11 @@ const enterNewToDo = function(event) {
       console.log("new todo: ", response);
       $newTodo.val('');
 
-      //TODO MOVE TO HELPER FUNCTION
-      //Search for this rather than direct referencing here
-      const $toEatCategory = $(document).find('#category-to-eat');
-      const $toReadCategory = $(document).find('#category-to-read');
-      const $toBuyCategory = $(document).find('#category-to-buy');
-      const $toWatchCategory = $(document).find('#category-to-watch');
-      let todo = response.todo.title;
+      //create HTML element of todo
+      const $entry = clientHelper.getTodoHtml(response.todo.title);
 
-      //truncate beyond 45 characters
-      if (response.todo.title.length > 45) {
-        todo = `${response.todo.title.slice(0, 45)}...`;
-      }
-
-      const $entry = $(`<li>${todo}</li>`);
-
-      //better than hardcoding category id's here, like (if category = 1, then eat).
-      //beacuse if we remove and add category #, then the logic will change.
-      //this method is a bit better but there is still some logic tied.
       console.log("response.category: ", response.category);
-      switch (response.category) {
-        case 'To Eat':
-          $toEatCategory.append($entry);
-          break;
-        case 'To Read':
-          $toReadCategory.append($entry);
-          break;
-        case 'To Buy':
-          $toBuyCategory.append($entry);
-          break;
-        case 'To Watch':
-          $toWatchCategory.append($entry);
-          break;
-        default:
-          console.log("there is no category for this to do");
-          break;
-      }
+      clientHelper.appendTodoOnCategory(response.category, $entry);
     })
     .catch(err => {
       console.log(err.message);
