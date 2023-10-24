@@ -56,13 +56,13 @@ app.get('/', (req, res) => {
       .then(user => {
         req.session.user = user;
         console.log('Visiting user defaulted login to user 1.');
-        res.render('index');
+        res.render('index', { user: req.session.user });
       })
       .catch(err => {
         throw err;
       });
   } else {
-    res.render('index');
+    res.render('index', { user: req.session.user });
   }
 });
 

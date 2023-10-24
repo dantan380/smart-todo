@@ -1,86 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>TODO Smart App</title>
 
-<head>
-  <title>TODO Smart App</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/output.css" />
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/output.css" />
+    <!-- stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css"
+    />
 
-  <!-- stylesheet -->
-  <link rel="stylesheet" href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css" />
+    <link
+      rel="stylesheet"
+      href="https://horizon-tailwind-react-corporate-7s21b54hb-horizon-ui.vercel.app/static/css/main.d7f96858.css"
+    />
 
-  <link rel="stylesheet"
-    href="https://horizon-tailwind-react-corporate-7s21b54hb-horizon-ui.vercel.app/static/css/main.d7f96858.css" />
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/client-helper.js"></script>
+    <script defer src="/scripts/app.js"></script>
+    <script defer src="/scripts/todos.js"></script>
+  </head>
 
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/client-helper.js"></script>
-  <script defer src="/scripts/app.js"></script>
-  <script defer src="/scripts/todos.js"></script>
-</head>
+  <body class="h-screen">
+    <header class="h-[10%] px-5">
+      <button
+        id=""
+        class="bg-transparent font-bold py-2 px-4 border border-black rounded shadow hover:border-blue-400 hover:shadow-lg hover:border-2 transition-all"
+      >
+        Todos
+      </button>
+      <p><%= user.username %></p>
+    </header>
 
-<body>
-  <h1>Have fun! 🥔</h1>
-  <h1 class="py-3 text-1xl font-bold">What would you like to do?</h1>
+    <main class="h-[90%]">
+      <h1>Have fun! 🥔</h1>
+      <h1 class="py-3 text-1xl font-bold">What would you like to do?</h1>
 
-  <!-- Text bar component in Tailwind -->
-  <div class="w-3/6 mx-auto">
-    <form id="new-todo-form">
-      <div class="max-w-7xl h-16 flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700">
-        <textarea id="todo-title" rows="1"
-          class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-all"
-          placeholder="I would like to watch/read/eat at/buy..."></textarea>
-        <button type="submit"
-          class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
-          <svg class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z">
-            </path>
-          </svg>
-        </button>
+      <!-- Text bar component in Tailwind -->
+      <div class="w-3/6 mx-auto">
+        <form id="new-todo-form">
+          <div
+            class="max-w-7xl h-16 flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-gray-700"
+          >
+            <textarea
+              id="todo-title"
+              rows="1"
+              class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-all"
+              placeholder="I would like to watch/read/eat at/buy..."
+            ></textarea>
+            <button
+              type="submit"
+              class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
+            >
+              <svg
+                class="w-6 h-6 rotate-90"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
-  <div class="mb-12" name="spacer"></div>
+      <div class="mb-12" name="spacer"></div>
 
-  <section class="flex justify-around" name="four-categories">
-    <article class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3">
-      <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
-        Watch
-      </h2>
-      <ul name="1" id="category-to-watch">
-      </ul>
-    </article>
+      <section class="flex justify-around" name="four-categories">
+        <ul
+          class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3"
+          name="1"
+          id="category-to-watch"
+        >
+          <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
+            To Watch
+          </h2>
+        </ul>
 
-    <article class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3">
-      <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
-        Eat
-      </h2>
-      <ul name="2" id="category-to-eat">
-      </ul>
-    </article>
+        <ul
+          class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3"
+          name="2"
+          id="category-to-eat"
+        >
+          <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
+            To Watch
+          </h2>
+        </ul>
 
-    <article class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3">
-      <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
-        Read
-      </h2>
-      <ul name="3" id="category-to-read">
-      </ul>
-    </article>
+        <ul
+          class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3"
+          name="3"
+          id="category-to-read"
+        >
+          <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
+            To Watch
+          </h2>
+        </ul>
 
-    <article class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3">
-      <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
-        Buy
-      </h2>
-      <ul name="4" id="category-to-buy">
-      </ul>
-    </article>
-  </section>
-</body>
-
+        <ul
+          class="flex flex-col bg-white p-4 rounded-lg m-4 w-1/3"
+          name="4"
+          id="category-to-buy"
+        >
+          <h2 class="text-2x1 font-semibold mb-4 flex justify-center">
+            To Watch
+          </h2>
+        </ul>
+      </section>
+    </main>
+  </body>
 </html>
