@@ -10,13 +10,17 @@ const router = express.Router();
 const todoQueries = require('../db/queries/todos');
 const googleApi = require('../apis/google-natural-lang-api');
 const helpers = require('../apis/helpers');
-// router.use((req, res, next) => {
-//   // TODO: Check cookies to see if logged in, else redirect or something.
-//   next();
-// });
+router.use((req, res, next) => {
+  if (!req.session.userId) {
+    res.status(401).json({ error: 'Please log in first. using /users/<id>' });
+    return;
+  }
+  next();
+});
 
 router.get('/', (req, res) => {
-  todoQueries.getTodosById(1)
+  const userIdCookie = req.session.userId;
+  todoQueries.getTodosById(userIdCookie)
     .then(todos => res.json(todos))
     .catch(err => {
       res
@@ -38,10 +42,9 @@ router.get('/withCategories', (req, res) => {
 
 router.post('/', (req, res) => {
   const text = req.body.text;
-  // const categoryString = googleApi;
+  const userIdCookie = req.session.userId;
   googleApi.callClassifyText(text)
     .then(googleCategories => {
-    
       //the category in sql.
       //return 'To Eat', for example.
       console.log(googleCategories);
@@ -49,7 +52,7 @@ router.post('/', (req, res) => {
     })
     .then(category => {
       //make the SQL call here:
-      return todoQueries.createNewTodo(1, category, text);
+      return todoQueries.createNewTodo(userIdCookie, category, text);
     })
     .then(newTodo => {
       //return the new record from sql.
@@ -63,7 +66,6 @@ router.post('/', (req, res) => {
 });
 
 router.patch('/:id', (req, res) => {
-  // TODO: Get user's id from cookie
   todoQueries.updateCategoryWithId()
     .then(updatedTodo => res.json(updatedTodo))
     .catch(err => {
