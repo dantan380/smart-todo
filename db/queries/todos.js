@@ -2,7 +2,7 @@ const db = require('../connection');
 
 /**
  * Creates a new to do.
- * 
+ *
  * EX:
  * createNewTodo(1, 'To Eat', 'I want to eat some delicious pho');
  * insert (1, 2, 'I want to eat some delicious pho', false);
@@ -28,7 +28,7 @@ VALUES(
       FROM categories
       WHERE categories.name = $2
       LIMIT 1
-    ), 
+    ),
     $3,
     'Description here',
     false
