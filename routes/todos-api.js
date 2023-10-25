@@ -65,6 +65,20 @@ router.post('/', (req, res) => {
     });
 });
 
+router.post('/update', (req, res) => {
+
+  if (req.body.isCompleted) {
+    return markTodoAsComplete(req, res);
+
+  }
+
+  if (req.body.category) {
+    return updateTodoCategory(req, res);
+  }
+
+  //TODO do nothing?  Not sure what the user is trying to update if it falls here
+});
+
 router.patch('/:id', (req, res) => {
   todoQueries.updateCategoryWithId()
     .then(updatedTodo => res.json(updatedTodo))
@@ -74,5 +88,31 @@ router.patch('/:id', (req, res) => {
         .json({ error: err.message });
     });
 });
+
+//helper - call to mark it as complete
+const markTodoAsComplete = function(req, res) {
+  todoQueries.markTodoAsComplete(req.body.id)
+    .then(updatedRow => {
+      res.json(updatedRow);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+};
+
+//helper - call to update the category
+const updateTodoCategory = function(req, res) {
+  todoQueries.updateCategoryWithId(req.body.id, req.body.category)
+  .then(updatedRow => {
+    res.json(updatedRow);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
+}
 
 module.exports = router;

@@ -37,7 +37,8 @@ const enterNewToDo = function(event) {
       $newTodo.val('');
 
       //create HTML element of todo
-      const $entry = clientHelper.getTodoHtml(response.todo.title);
+      const $entry = clientHelper
+        .getTodoHtml(response.todo.title, response.todo.id, response.category);
 
       console.log("response.category: ", response.category);
       clientHelper.appendTodoOnCategory(response.category, $entry);

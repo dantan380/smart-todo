@@ -54,7 +54,7 @@ const getTodosById = (id) => {
 };
 
 const getTodosByIdWithCategoryNames = (id) => {
-  return db.query(`SELECT todos.id, categories.name, title, description, is_complete, date_created 
+  return db.query(`SELECT todos.id, categories.name AS category, title, description, is_complete, date_created 
   FROM todos JOIN categories ON todos.category_id = categories.id
   WHERE user_id = $1;`, [id])
     .then(todos => {
@@ -62,7 +62,7 @@ const getTodosByIdWithCategoryNames = (id) => {
     });
 };
 
-const updateCategoryWithId = (newCategory, todoId) => {
+const updateCategoryWithId = (todoId, newCategory) => {
   // First get category id of new category.
   return db.query(`SELECT id FROM categories WHERE name = $1 LIMIT 1`, [newCategory])
     .then(res => {
@@ -72,13 +72,23 @@ const updateCategoryWithId = (newCategory, todoId) => {
       return res.rows[0];
     })
     // Then update user's todo with category id.
-    .then(categoryId => db.query(`UPDATE todos SET category_id = $1 WHERE id = $2 RETURNING *`, [categoryId, todoId]))
-    .then(res => res.rows)
+    .then(rowWithCategory => db.query(
+      `UPDATE todos SET category_id = $1 WHERE id = $2 RETURNING *`, [rowWithCategory.id, todoId]))
+
+    //returns {} todo record
+    .then(res => res.rows[0])
     .catch(err => {
-      console.log('Error occurred:', err.message);
+      console.log('Could not update category:', err.message);
       throw err;
     });
 };
+
+//TODO Remove me when done!
+// TESTING UPDATING
+// updateCategoryWithId(57, 'To Eat')
+//   .then(res => {
+//     console.log("row updated", res);
+//   });
 
 //TODO Remove me when done!
 // TESTING ADDING NEW TO DO QUERY

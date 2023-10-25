@@ -30,14 +30,15 @@ const clientHelper = (function() {
 
   //truncates characters if it's too long
   //create html element
-  _helpers.getTodoHtml = function(valueOfTodo) {
+  _helpers.getTodoHtml = function(valueOfTodo, todoId, category) {
     let todo = valueOfTodo;
+    let id = todoId;
     if (valueOfTodo.length > TRUNCATE_CHARACTER_LIMIT) {
       todo = `${valueOfTodo.slice(0, TRUNCATE_CHARACTER_LIMIT)}...`;
     }
 
     //our fancy html element
-    const $entry = $(`<li class="p-2 flex items-center draggable no-select" draggable="true">
+    const $entry = $(`<li class="p-2 flex items-center todoItem draggable no-select" draggable="true" data="${id}" category="${category}">
     <input type="checkbox" class="mr-2" />
     <label for="item1" class="mr-2">${todo}</label>
     <button
@@ -97,7 +98,7 @@ const clientHelper = (function() {
 
         const $draggable = $(document).find('.dragging');
 
-        $container.append($draggable);
+        $container.find('.category-list').append($draggable);
       });
     });
   };
@@ -110,7 +111,31 @@ const clientHelper = (function() {
 
     $draggable.on('dragend', () => {
       $draggable.removeClass('dragging');
+      handleCategoryChange($draggable);
     });
   };
   return _helpers;
 })();
+
+//makes ajax call to update the backend, and then update the attribute of the todo afterwards.
+const handleCategoryChange = function($draggable) {
+
+  //get the parent container
+  $parentContainer = $draggable.closest('ul');
+
+  // Get the value of an attribute, for example, "data-custom"
+  const nameOfParentCategory = $parentContainer.attr('name');
+  const nameOfToDoCategory = $draggable.attr('category');
+  const todoId = $draggable.attr('data');
+
+  //there is a change!  We need to make a call to update the backend
+  if (nameOfParentCategory !== nameOfToDoCategory) {
+    console.log("change required");
+    $.ajax({ method: "POST", url: "/api/todos/update", dataType: "json", data: { id: todoId, category: nameOfParentCategory } })
+      .then(() => {
+
+        //update the todo with the new parent category
+        $draggable.attr('category', nameOfParentCategory);
+      });
+  }
+};

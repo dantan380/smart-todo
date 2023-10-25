@@ -31,10 +31,11 @@ const processTodos = function(todos) {
   todos.forEach(element => {
 
     //create HTML element of todo
-    const $entry = clientHelper.getTodoHtml(element.title);
+    const $entry = clientHelper.getTodoHtml(element.title, element.id,
+      element.category);
 
     //finally add the entry to the category.
-    clientHelper.appendTodoOnCategory(element.name, $entry);
+    clientHelper.appendTodoOnCategory(element.category, $entry);
 
   });
 
