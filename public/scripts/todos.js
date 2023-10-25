@@ -46,6 +46,9 @@ const enterNewToDo = function(event) {
       //attach drag function for this new todo
       //make sure to do this after it's appended
       clientHelper.attachDragAndDrop($entry);
+
+      //append delete function
+      clientHelper.attachDeleteFn($entry);
     })
     .catch(err => {
       console.log(err.message);

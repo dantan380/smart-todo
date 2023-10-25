@@ -33,13 +33,8 @@ const processTodos = function(todos) {
     //finally add the entry to the category.
     clientHelper.appendTodoOnCategory(element.category, $entry);
 
-    $entry.find(".checkmark-circle").on("click", (event) => {
-      const todoId = $(event.currentTarget.parentElement).attr("data");
-      $.ajax({ method: "POST", url: "/api/todos/update", dataType: "json", data: { id: todoId, isCompleted: true } })
-        .then(() => {
-          $entry.remove();
-        });
-    });
+    //append delete function
+    clientHelper.attachDeleteFn($entry);
   });
 
   //after populating the list items, start attaching element handlers for

@@ -119,6 +119,18 @@ const clientHelper = (function() {
       handleCategoryChange($draggable);
     });
   };
+
+  //attach delete checkbox handler to each item
+  _helpers.attachDeleteFn = function($entry) {
+    $entry.find(".checkmark-circle").on("click", (event) => {
+      const todoId = $(event.currentTarget.parentElement).attr("data");
+      $.ajax({ method: "POST", url: "/api/todos/update", dataType: "json", data: { id: todoId, isCompleted: true } })
+        .then(() => {
+          $entry.remove();
+        });
+    });
+  };
+
   return _helpers;
 })();
 
