@@ -48,8 +48,8 @@ const clientHelper = (function() {
     </div>
     <label for="item1" class="mr-2 grow">${todo}</label>
     <button
-      class="grow-0 bg-orange-500 text-white py-1 px-2 rounded-full">
-      Edit
+      class="grow-0 bg-teal-500 text-white py-1 px-3 rounded-full">
+      ↔
     </button>
   </li>`);
     return $entry;
