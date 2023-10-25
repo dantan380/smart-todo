@@ -33,7 +33,7 @@ header {
   align-items: center;
 }
 
-svg:hover {
+.checkmark-circle>svg:hover {
   fill: black;
 }
 
