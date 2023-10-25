@@ -38,4 +38,7 @@ const processTodos = function(todos) {
 
   });
 
+  //after populating the list items, start attaching element handlers for
+  //drag and drop
+  clientHelper.attachDragAndDrop();
 };

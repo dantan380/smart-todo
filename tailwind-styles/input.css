@@ -32,3 +32,11 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+
+.draggable.dragging {
+  opacity: 0.5;
+}
+
+.draggable.no-select {
+  user-select: none;
+}

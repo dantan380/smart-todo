@@ -37,7 +37,7 @@ const clientHelper = (function() {
     }
 
     //our fancy html element
-    const $entry = $(`<li class="p-2 flex items-center">
+    const $entry = $(`<li class="p-2 flex items-center draggable no-select" draggable="true">
     <input type="checkbox" class="mr-2" />
     <label for="item1" class="mr-2">${todo}</label>
     <button
@@ -71,5 +71,40 @@ const clientHelper = (function() {
     }
   };
 
+  _helpers.attachDragAndDrop = function() {
+    const $draggables = $(document).find('.draggable');
+    const $containers = $(document).find('article');
+
+    $draggables.each(function() {
+      // Wrap the current draggable element in a jQuery object
+      const $draggable = $(this);
+
+      $draggable.on('dragstart', () => {
+        $draggable.addClass('dragging');
+      });
+
+      $draggable.on('dragend', () => {
+        $draggable.removeClass('dragging');
+      });
+    });
+
+    console.log('assigning drag and drop');
+
+    //containers (an <article>)
+    $containers.each(function() {
+
+      // Wrap the current draggable element in a jQuery object
+      const $container = $(this);
+      $container.on('dragover', e => {
+
+        //dropping inside of an element is disabled, by default
+        e.preventDefault();
+
+        const $draggable = $(document).find('.dragging');
+
+        $container.append($draggable);
+      });
+    });
+  };
   return _helpers;
 })();
