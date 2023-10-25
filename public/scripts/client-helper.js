@@ -30,14 +30,15 @@ const clientHelper = (function() {
 
   //truncates characters if it's too long
   //create html element
-  _helpers.getTodoHtml = function(valueOfTodo) {
+  _helpers.getTodoHtml = function(valueOfTodo, todoId) {
     let todo = valueOfTodo;
+    let id = todoId;
     if (valueOfTodo.length > TRUNCATE_CHARACTER_LIMIT) {
       todo = `${valueOfTodo.slice(0, TRUNCATE_CHARACTER_LIMIT)}...`;
     }
 
     //our fancy html element
-    const $entry = $(`<li class="p-2 flex items-center">
+    const $entry = $(`<li class="p-2 flex items-center todoItem" data="${id}">
     <input type="checkbox" class="mr-2" />
     <label for="item1" class="mr-2">${todo}</label>
     <button

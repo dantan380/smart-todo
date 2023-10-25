@@ -65,6 +65,18 @@ router.post('/', (req, res) => {
     });
 });
 
+router.post('/update', (req, res) => {
+  todoQueries.markTodoAsComplete(req.body.id)
+    .then(updatedRow => {
+      res.json(updatedRow);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    })
+});
+
 router.patch('/:id', (req, res) => {
   todoQueries.updateCategoryWithId()
     .then(updatedTodo => res.json(updatedTodo))
