@@ -32,3 +32,11 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+
+svg:hover {
+  fill: black;
+}
+
+.checkmark-circle:hover {
+  opacity: 1;
+}

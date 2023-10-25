@@ -39,10 +39,14 @@ const clientHelper = (function() {
 
     //our fancy html element
     const $entry = $(`<li class="p-2 flex items-center todoItem justify-between" data="${id}">
-    <input type="checkbox" class="mr-2 grow-0" />
-    <label for="item1" class="mr-2">${todo}</label>
+    <div class="checkmark-circle shrink-0 w-6 h-6 mr-2 rounded-full border-2 border-black place-content-center cursor-pointer opacity-50 transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 fill-white">
+        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <label for="item1" class="mr-2 grow">${todo}</label>
     <button
-      class="grow-0 bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full"
+      class="grow-0 bg-orange-500 text-white py-1 px-2 rounded-full"
     >
       Edit
     </button>
