@@ -41,6 +41,10 @@ const enterNewToDo = function(event) {
 
       console.log("response.category: ", response.category);
       clientHelper.appendTodoOnCategory(response.category, $entry);
+
+      //attach drag function for this new todo
+      //make sure to do this after it's appended
+      clientHelper.attachDragAndDrop($entry);
     })
     .catch(err => {
       console.log(err.message);

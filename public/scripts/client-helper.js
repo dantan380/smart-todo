@@ -76,16 +76,11 @@ const clientHelper = (function() {
     const $containers = $(document).find('article');
 
     $draggables.each(function() {
+
       // Wrap the current draggable element in a jQuery object
       const $draggable = $(this);
 
-      $draggable.on('dragstart', () => {
-        $draggable.addClass('dragging');
-      });
-
-      $draggable.on('dragend', () => {
-        $draggable.removeClass('dragging');
-      });
+      _helpers.attachDragHelper($draggable);
     });
 
     console.log('assigning drag and drop');
@@ -104,6 +99,17 @@ const clientHelper = (function() {
 
         $container.append($draggable);
       });
+    });
+  };
+
+  //attach / remove class on drag start / end
+  _helpers.attachDragHelper = function($draggable) {
+    $draggable.on('dragstart', () => {
+      $draggable.addClass('dragging');
+    });
+
+    $draggable.on('dragend', () => {
+      $draggable.removeClass('dragging');
     });
   };
   return _helpers;
