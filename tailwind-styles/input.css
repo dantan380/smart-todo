@@ -33,6 +33,13 @@ header {
   align-items: center;
 }
 
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .draggable.dragging {
   opacity: 0.5;
 }
