@@ -19,7 +19,7 @@ body {
     rgba(163, 219, 200, 1) 100%
   );
   background-size: 400%;
-  animation: bg-animation 15s infinite alternate;
+  animation: bg-animation 20s infinite alternate;
 }
 
 @keyframes bg-animation {
