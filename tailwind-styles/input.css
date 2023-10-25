@@ -47,3 +47,11 @@ footer {
 .draggable.no-select {
   user-select: none;
 }
+
+.checkmark-circle>svg:hover {
+  fill: black;
+}
+
+.checkmark-circle:hover {
+  opacity: 1;
+}

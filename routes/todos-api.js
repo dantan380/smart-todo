@@ -76,7 +76,8 @@ router.post('/update', (req, res) => {
     return updateTodoCategory(req, res);
   }
 
-  //TODO do nothing?  Not sure what the user is trying to update if it falls here
+  //invalid request
+  return req.status(400).json({ error: "Invalid Request." });;
 });
 
 router.patch('/:id', (req, res) => {
@@ -105,14 +106,14 @@ const markTodoAsComplete = function(req, res) {
 //helper - call to update the category
 const updateTodoCategory = function(req, res) {
   todoQueries.updateCategoryWithId(req.body.id, req.body.category)
-  .then(updatedRow => {
-    res.json(updatedRow);
-  })
-  .catch(err => {
-    res
-      .status(500)
-      .json({ error: err.message });
-  });
-}
+    .then(updatedRow => {
+      res.json(updatedRow);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+};
 
 module.exports = router;

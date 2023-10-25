@@ -47,7 +47,7 @@ VALUES(
 };
 
 const getTodosById = (id) => {
-  return db.query('SELECT * FROM todos WHERE user_id = $1', [id])
+  return db.query('SELECT * FROM todos WHERE user_id = $1 AND is_complete = false', [id])
     .then(todos => {
       return todos.rows;
     });
@@ -56,7 +56,7 @@ const getTodosById = (id) => {
 const getTodosByIdWithCategoryNames = (id) => {
   return db.query(`SELECT todos.id, categories.name AS category, title, description, is_complete, date_created 
   FROM todos JOIN categories ON todos.category_id = categories.id
-  WHERE user_id = $1;`, [id])
+  WHERE user_id = $1 AND is_complete = false;`, [id])
     .then(todos => {
       return todos.rows;
     });
@@ -83,6 +83,15 @@ const updateCategoryWithId = (todoId, newCategory) => {
     });
 };
 
+const markTodoAsComplete = function(id) {
+  return db.query(`UPDATE todos SET is_complete = true WHERE id = $1 RETURNING *`, [id])
+    .then(res => res.rows)
+    .catch(err => {
+      console.log('Error occurred:', err.message);
+      throw err;
+    });
+};
+
 //TODO Remove me when done!
 // TESTING UPDATING
 // updateCategoryWithId(57, 'To Eat')
@@ -104,4 +113,4 @@ const updateCategoryWithId = (todoId, newCategory) => {
 //   });
 
 
-module.exports = { getTodosById, updateCategoryWithId, createNewTodo, getTodosByIdWithCategoryNames };
+module.exports = { getTodosById, updateCategoryWithId, createNewTodo, getTodosByIdWithCategoryNames, markTodoAsComplete };
