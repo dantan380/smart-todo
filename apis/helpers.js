@@ -6,11 +6,11 @@
 
 //Takes in  an array of categories.  [{name: 'Automobile/Wheels', confidence: '0.512'},{name: 'Food/Drink', confidence: '0.345'}]
 //return one of the categories in our DB table categories.
-const toReadCategories = ['/Books & Literature', '/Arts & Entertainment/Comics & Animation/Anime & Manga', 'Arts & Entertainment/Comics & Animation/Comics'];
-const toWatchCategories = ['Arts & Entertainment/Entertainment Industry/Film & TV Industry', 'Arts & Entertainment/Movies', '/Arts & Entertainment/TV & Video/TV Shows & Programs']
+const toReadCategories = ['/Books & Literature', '/Arts & Entertainment/Comics & Animation/Anime & Manga', 'Arts & Entertainment/Comics & Animation/Comics', '/News/Other'];
+const toWatchCategories = ['Arts & Entertainment/Entertainment Industry/Film & TV Industry', 'Arts & Entertainment/Movies', '/Arts & Entertainment/TV & Video'];
 const organizeCategories = function(categories) {
 
-  if(categories && categories.length == 0) {
+  if (categories && categories.length === 0) {
     console.log("No categories found, defaulting 'To Buy'");
     return 'To Buy';
   }
