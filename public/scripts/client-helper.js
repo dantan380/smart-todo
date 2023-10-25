@@ -38,11 +38,11 @@ const clientHelper = (function() {
     }
 
     //our fancy html element
-    const $entry = $(`<li class="p-2 flex items-center todoItem" data="${id}">
-    <input type="checkbox" class="mr-2" />
+    const $entry = $(`<li class="p-2 flex items-center todoItem justify-between" data="${id}">
+    <input type="checkbox" class="mr-2 grow-0" />
     <label for="item1" class="mr-2">${todo}</label>
     <button
-      class="bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full"
+      class="grow-0 bg-orange-500 hover:bg-blue-600 text-white py-1 px-2 rounded-full"
     >
       Edit
     </button>
