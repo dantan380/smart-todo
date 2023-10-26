@@ -2,9 +2,25 @@
 $(function() {
   //...init page for user
 
+  //generate a random greeting
+  generateRandomGreeting();
+
   //load the user's categories here:
   loadUserTodos();
 });
+
+const generateRandomGreeting = function() {
+  const arrOfGreetings = ["What would you like to do?",
+    "Let Google decide your tasks for you.",
+    "Remember the thing you had to do at that place?  Should have noted it down.",
+    "Please keep the to dos to under 30k tasks per month. 😅",
+    "Now you have no excuses for missed anniversaries. 🎉",
+    "Classify your tasks using Google Natural Language API."];
+  const randomNumber = Math.floor(Math.random() * arrOfGreetings.length);
+  const greeting = arrOfGreetings[randomNumber];
+  $greeting = $(document).find('#greeting');
+  $greeting.text(greeting);
+};
 
 const loadUserTodos = function() {
   console.log("app.js: Loading user's to dos");
