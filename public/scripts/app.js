@@ -5,9 +5,24 @@ $(function() {
   //generate a random greeting
   generateRandomGreeting();
 
+  // Add event listeners to new todo form.
+  loadNewTodoHandlers();
+
   //load the user's categories here:
   loadUserTodos();
 });
+
+const loadNewTodoHandlers = function() {
+  const $form = $('#new-todo-form');
+  const $textArea = $form.find('textArea');
+
+  $textArea.on('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      $form.trigger('submit');
+    }
+  });
+};
 
 const generateRandomGreeting = function() {
   const arrOfGreetings = ["What would you like to do?",
