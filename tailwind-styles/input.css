@@ -40,6 +40,21 @@ footer {
   align-items: center;
 }
 
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #70809033;
+  margin-block: 0.5em;
+  border-radius: 100vw
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7080904a;
+  border-radius: 100vw;
+}
+
 .draggable.dragging {
   opacity: 0.5;
 }
