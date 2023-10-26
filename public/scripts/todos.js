@@ -13,7 +13,8 @@ const enterNewToDo = function(event) {
   event.preventDefault();
 
   const $newTodo = $(event.target).find('textarea');
-  const newTodoString = $newTodo.val();
+  const sanitizedString = $(`<div>${$newTodo.val()}</div>`).text();
+  const newTodoString = sanitizedString;
 
   if (newTodoString === '') {
     console.log("😓 The To Do is empty.");
