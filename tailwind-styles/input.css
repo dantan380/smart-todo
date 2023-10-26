@@ -45,13 +45,13 @@ footer {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(163 208 219 / 30%);
+  background: #70809033;
   margin-block: 0.5em;
   border-radius: 100vw
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(163 208 219 / 38%);
+  background: #7080904a;
   border-radius: 100vw;
 }
 
