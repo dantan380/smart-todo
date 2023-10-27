@@ -7,9 +7,9 @@ Simple to-do app that tracks tasks and automatically categorizes them based on p
 Users can add a 'to do' by entering a phrase or statement and Google will give us back their categories.  The APP, on the server side, will then filter those categories into our predefined buckets which are 'Eat', 'Buy', 'Watch', and 'Read'.  This was a midterm project completed by 3 Lighthouse Lab students, over a period of 7 days.  We were given a skeleton node layout, and we were tasked to build a full-stack app on top of it.  This includes project planning, user story grooming, ERD creation, etc.
 
 Students:
-* !["Garrick Henne"](https://github.com/garrickhenne)
-* !["Daniel Tan"](https://github.com/dantan380)
-* !["Robert Shum"](https://github.com/robertshum)
+* [Garrick Henne](https://github.com/garrickhenne)
+* [Daniel Tan](https://github.com/dantan380)
+* [Robert Shum](https://github.com/robertshum)
 
 ## Features
 
